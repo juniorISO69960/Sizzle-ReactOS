@@ -1,5 +1,6 @@
 @echo off
 ::Joe's simple shitty script for intializating a developer prompt for ReactOS with Visual Studio
+::now git compatable!
 
 ::Variables
 ::change these to match your directory or maybe I will just add the code to allow you to change it when executing this
