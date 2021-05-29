@@ -32,12 +32,12 @@ echo %RosSrcDir%
 if "%RosBEDir%" == "" (
     set RosBEDir=C:\RosBEDir
     ::tell the idiot he/she didn't set the environments are we are using defaults
-    echo React OS build environment not set. Using default directory!
+    echo ReactOS build environment not set. Using default directory!
 )
 if "%RosSrcDir%" == "" (
     set RoSSrcDir=C:\RoSSrcDir
     ::again, tell them no var was set
-    echo React OS source directory not set. Using default directory!
+    echo ReactOS source directory not set. Using default directory!
 )
 
 
