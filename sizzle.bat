@@ -9,6 +9,10 @@
 ::change these to match your directory or maybe I will just add the code to allow you to change it when executing this
 ::too lazy right now
 
+::presetting parameters
+set RoSBEDir=
+set RoSSrcDir=
+
 ::parameters that we can use
 ::help parameters
 if "%1" == "help" goto Usage
@@ -17,8 +21,11 @@ if "%1" == "/?" goto Usage
 if "%1" == "-help" goto Usage
 if "%1" == "/help" goto Usage
 ::directory parameters
-if /I "%1" == "RosBE_dir" set RosBEDir=%2
-if /I "%1" == "RoSSrc_dir" set RosSrcDir=%2
+if /I "%1" == "RoSBE_dir" set RosBEDir=%2
+if /I "%3" == "RoSSrc_dir" set RoSSrcDir=%4
+
+echo %RosBEDir%
+echo %RosSrcDir%
 
 ::if the variables are blank, don't use them and use our defaults, which will be straight
 ::from react OS's website
@@ -28,10 +35,11 @@ if "%RosBEDir%" == "" (
     echo React OS build environment not set. Using default directory!
 )
 if "%RosSrcDir%" == "" (
-    set RosSrcDir=C:\RosSrcDir
+    set RoSSrcDir=C:\RoSSrcDir
     ::again, tell them no var was set
     echo React OS source directory not set. Using default directory!
 )
+
 
 ::make our directory? or add code that can see if it exists already or not
 mkdir %RosSrcDir%\VSSolutions
