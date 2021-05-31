@@ -11,6 +11,7 @@
 ::change these to match your directory or maybe I will just add the code to allow you to change it when executing this
 ::too lazy right now
 
+:parameters
 ::presetting parameters
 set RoSBEDir=
 set RoSSrcDir=
@@ -32,14 +33,17 @@ if /I "%1" == "RoSBE_dir" set RosBEDir=%2
 if /I "%3" == "RoSSrc_dir" set RoSSrcDir=%4
 ::unused parameters for now
 ::do we really need these variables to be set or can we just work with a bunch of goto commands which can execute each other?
+::we need to choose whether to set variables and use if commands or to use variables and goto commands... 
 ::if /I "%1" == "solutions_dir" set solutionsDir=%2
 ::if /I "%2" == "genSolutions" set solutionsGen=true& set configure=true& set build=false& goto generateSolutions
 ::if /I "%3" == "configure" set configure=true& set solutionsGen=false& goto configureSource
 ::if /I "%4" == "build" set build=true& set solutionsGen=false& set configure=true& goto buildSource
 
+:printPaths
 echo %RosBEDir%
 echo %RosSrcDir%
 
+:checkDirDefaults
 ::if the variables are blank, don't use them and use our defaults, which will be straight
 ::from react OS's website
 if "%RosBEDir%" == "" (
@@ -53,7 +57,7 @@ if "%RosSrcDir%" == "" (
     echo ReactOS source directory not set. Using default directory!
 )
 
-
+:setVars
 ::make our directory? or add code that can see if it exists already or not
 mkdir %RosSrcDir%\VSSolutions
 ::move to our directory
@@ -63,6 +67,7 @@ set BISON_PKGDATADIR=%RosBEDir%\share\bison
 ::set M4 variable
 set M4=%RosBEDir%\bin\m4.exe
 
+:solutionChoice
 ::our new choice picker whether to execute and generate solution files or tell the user how to
 set /P solutionMakerChoice=Generate Visual Studio solutions now[Y/N][Y]?
 if /I "%solutionMakerChoice%" EQU "Y" goto :generate_solutions
@@ -86,6 +91,7 @@ echo 2. build: Builds all components. See notes.
 echo 3. makecd: generates the ISO images.
 echo ------------------------------------------------------------------------------------------------------------
 goto :exit
+
 ::generate solutions call
 :generate_solutions
 %RosSrcDir%\configure.cmd VSSolution -DENABLE_ROSTESTS=1 -DENABLE_ROSAPPS=1
