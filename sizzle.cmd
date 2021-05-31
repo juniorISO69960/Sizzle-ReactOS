@@ -46,6 +46,7 @@ echo %RosSrcDir%
 :checkDirDefaults
 ::if the variables are blank, don't use them and use our defaults, which will be straight
 ::from react OS's website
+::this code isn't really needed anymore...
 if "%RosBEDir%" == "" (
     set RosBEDir=C:\RosBEDir
     ::tell the idiot he/she didn't set the environments are we are using defaults
@@ -58,6 +59,7 @@ if "%RosSrcDir%" == "" (
 )
 
 :setVars
+::this code is going to be completely redone to a certain structure, which will be as follows: See notes.
 ::make our directory? or add code that can see if it exists already or not
 mkdir %RosSrcDir%\VSSolutions
 ::move to our directory
@@ -115,3 +117,23 @@ pause
 ::---------------------------------------------------------------------------------------------------
 ::ISO images, again, might be set into an external script to simplify sizzle and operate similar to the build
 ::parameter, we will see though. 
+
+::variable notes and path structure
+::our directory for this script will be as follows
+::
+::
+::                                    |--sizzle.cmd--
+::                                    |--RoSBE\--
+::              |--Tools--------------|--makeCD.cmd--(possibly pointless)--
+::              |                     |--build.cmd--(possibly pointless)--
+::              |--buildInit.cmd----  |--add some special scripts as needed--
+::-Ros Source---|--source code etc--
+::
+::
+::buildInit.cmd: Would be useful, but variables are in sizzle so.. pointless I guess?
+::Should we put RoSBE in the root of the source tree, dump its contents into tools or
+::should we just put the RoSBE directory into the tools directory...
+::
+::
+::
+::
