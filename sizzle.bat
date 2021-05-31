@@ -67,6 +67,10 @@ echo Valid Parameters:
 echo 1. RoSBE_dir: sets the build environment directory. Defaults to C:\RoSBE, ex: RoSBE_dir=C:\RosBE
 echo 2. RoSSrc_dir: sets the ReactOS source directory. Defaults to C:\RosSrcDir, ex: RoSSrc_dir=C:\reactos-master
 echo 3. Help: displays parameters and info for sizzle.bat
+echo Unused parameters as of now:
+echo 1. configure: Disables generation of Visual Studio solutions and runs configre.cmd to generate ReactOS Build Environment for MSVC
+echo 2. build: Builds all components. See notes.
+echo 3. makecd: generates the ISO images.
 echo ------------------------------------------------------------------------------------------------------------
 goto :exit
 ::generate solutions call
@@ -82,3 +86,13 @@ goto :exit
 ::just exits the program, simple
 :exit
 pause
+
+
+::notes
+::The build parameter could be eventually pushed to an external script and sizzle rewritten to behave
+::more like razzle.cmd from Windows XP and Win2k3 build tools, and we might make the RoSBe just be
+::included with the source tree and require sizzle to be in a certain directory, removing
+::the need for directory parameters except for like a Visual Studio output directory for solutions...
+::---------------------------------------------------------------------------------------------------
+::ISO images, again, might be set into an external script to simplify sizzle and operate similar to the build
+::parameter, we will see though. 
